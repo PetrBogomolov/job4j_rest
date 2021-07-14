@@ -1,0 +1,19 @@
+language: java
+jdk:
+  - openjdk14
+services:
+  - postgresql
+before_install:
+  - psql -c 'create database rest_full;' -U postgres
+sudo: false
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+notifications:
+  email:
+    recipients:
+      -BogomoloffPD@yandex.ru
+    on_success: never
+    on_failure: always
+env:
+  global:
+    - CODECOV_TOKEN='ae777565-1b39-44f2-ad18-be4c0329fde9'
